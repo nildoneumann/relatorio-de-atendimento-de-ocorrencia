@@ -1,0 +1,174 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Relatório de Atendimento de Ocorrência</title>
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 15px;
+      font-size: 16px;
+      font-weight: bold;
+      max-width: 800px;
+      margin: auto;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 22px;
+      margin-top: 4px;
+      color: darkgreen;
+    }
+
+    .logo-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .logo {
+      width: 80px;
+    }
+
+    .linha-horizontal {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+
+    .linha-horizontal label {
+      flex: 1;
+      min-width: 180px;
+    }
+
+    label {
+      display: block;
+      margin-top: 4px;
+    }
+
+    input[type="text"], input[type="date"], input[type="time"], textarea {
+      width: 100%;
+      padding: 5px;
+      font-weight: bold;
+      font-size: 15px;
+color: blue;
+    }
+
+    textarea {
+      height: 80px;
+color: blue;
+    }
+
+    .btn {
+      margin-top: 20px;
+      padding: 10px 15px;
+      font-weight: bold;
+      font-size: 16px;
+      background-color: #ADD8E6;
+    }
+
+    p {
+      color: red;
+      margin-top: 4px;
+      font-size: 14px;
+    }
+
+    #pdf-content {
+      background-color: lightblue;
+      padding: 20px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="logo-container">
+    <img src="logo-prefeitura.png" alt="Prefeitura" class="logo">
+    <img src="logo-setran.png" alt="Setran" class="logo">
+  </div>
+
+<div id="pdf-content">
+  <h1>RELATÓRIO DE ATENDIMENTO DE OCORRÊNCIA</h1>
+
+    <label>NÚMERO: <input type="text" name="numero"style="width: 50px;">/2025</label>
+
+    <div class="linha-horizontal">
+      <label>Data: <input type="date" name="data"></label>
+      <label>Hora Início: <input type="time" name="hora_inicio"></label>
+      <label>Hora Término: <input type="time" name="hora_termino"></label>
+    </div>
+
+    <label>2 - SOLICITANTE:</label>
+    <label>NÚMERO DO TELEFONE: <input type="text" name="telefone"></label>
+    <label>LOCAL DA OCORRÊNCIA: <input type="text" name="local"></label>
+    <label>SITUAÇÃO INFORMADA: <textarea name="situacao"></textarea></label>
+
+    <label>3 - RELATÓRIO DO ATENDIMENTO E AÇÕES REALIZADAS: <textarea name="relatorio"></textarea></label>
+
+    <label>- Autos de infração lavrados: <input type="text" name="autos"></label>
+    <label>- Número de pessoas atendidas: <input type="text" name="pessoas_atendidas"></label>
+    <label>- Veículos recolhidos: <input type="text" name="veiculos"></label>
+
+    <label>Equipe:</label>
+    <label>Nome/Assinatura/Responsável pelo preenchimento: <input type="text" name="responsavel"></label>
+    <label>Nome/Assinatura 2: <input type="text" name="assinatura2"></label>
+    <label>Nome/Assinatura 3: <input type="text" name="assinatura3"></label>
+    <label>Nome/Assinatura 4: <input type="text" name="assinatura4"></label>
+    <label>VTR: <input type="text" name="vtr"></label>
+
+    <p><strong>OBS:</strong> ESTE DOCUMENTO É UMA COLETA PRELIMINAR DE DADOS, PARA CONTROLE DE ATENDIMENTOS DE ACIDENTES / OCORRÊNCIA DA SETRAN, NÃO SUBSTITUI O REGISTRO REALIZADO POR OUTROS ÓRGÃOS.</p>
+ 
+  </div>
+<button type="button" class="btn" onclick="gerarPDF()">Baixar PDF</button>
+  <script>
+    function gerarPDF() {
+      const original = document.getElementById('pdf-content');
+      const clone = original.cloneNode(true);
+      const textareas = clone.querySelectorAll('textarea');
+      textareas.forEach(textarea => {
+        const div = document.createElement('div');
+        div.style.whiteSpace = 'pre-wrap';
+        div.style.border = '1px solid #ccc';
+        div.style.padding = '5px';
+        div.style.minHeight = '80px';
+        div.style.fontWeight = 'bold';
+        div.style.fontSize = '15px';
+        div.textContent = textarea.value;
+        textarea.parentNode.replaceChild(div, textarea);
+      });
+
+      const container = document.createElement('div');
+      container.style.position = 'absolute';
+      container.style.left = '-9999px';
+      container.appendChild(clone);
+      document.body.appendChild(container); 
+
+      html2pdf()
+        .set({
+          margin: [10, 10, 10, 10],
+          filename: 'relatorio_ocorrencia.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        })
+
+        .from(clone)
+        .save()
+        .then(() => {
+          document.body.removeChild(container);
+        });
+    }
+if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('sw.js');
+    }
+
+  </script>
+</body>
+</html>
