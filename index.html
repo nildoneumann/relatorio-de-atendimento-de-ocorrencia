@@ -49,12 +49,22 @@
       flex-wrap: wrap;
       margin-top: 2px;
     }
+    .linha-horizontal-3 {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 2px;
+    }
 
     .linha-horizontal label {
       flex: 1;
       min-width: 180px;
     }
     .linha-horizontal-2 label {
+      flex: 1;
+      min-width: 180px;
+    }
+    .linha-horizontal-3 label {
       flex: 1;
       min-width: 180px;
     }
@@ -107,9 +117,9 @@ color: blue;
   </div>
 
 <div id="pdf-content">
-  <h1>RELATÓRIO DE ATENDIMENTO DE OCORRÊNCIA</h1>
+  <h1><U>RELATÓRIO DE ATENDIMENTO DE OCORRÊNCIA</U></h1>
 
-    <label>NÚMERO: <input type="text" name="numero"style="width: 50px;">/2025</label>
+    <label>NÚMERO: <input type="text" name="numero"style="width: 50px;"> /2025</label>
 
     <div class="linha-horizontal">
       <label>Data: <input type="date" name="data"></label>
@@ -128,10 +138,12 @@ color: blue;
     <label>- Número de pessoas atendidas: <input type="text" name="pessoas_atendidas"></label>
     <label>- Veículos recolhidos: <input type="text" name="veiculos"></label>
 
-    <label>Equipe:</label>
+    <label>4 - EQUIPE:</label>
+  <div class="linha-horizontal-2">
     <label>Nome/Assinatura/Responsável pelo preenchimento: <input type="text" name="responsavel"></label>
     <label>Nome/Assinatura 2: <input type="text" name="assinatura2"></label>
-  <div class="linha-horizontal-2">
+    </div>
+  <div class="linha-horizontal-3">
     <label>Nome/Assinatura 3: <input type="text" name="assinatura3"></label>
     <label>Nome/Assinatura 4: <input type="text" name="assinatura4"></label>
     </div>
