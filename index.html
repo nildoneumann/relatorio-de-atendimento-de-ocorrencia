@@ -153,6 +153,7 @@ color: blue;
  
   </div>
 <button type="button" class="btn" onclick="gerarPDF()">Baixar PDF</button>
+  <button class="btn" onclick="compartilharPDF()">Compartilhar PDF</button>
   <script>
     function gerarPDF() {
       const original = document.getElementById('pdf-content');
@@ -196,6 +197,63 @@ color: blue;
 if ('serviceWorker' in navigator) {
       navigator.serviceWorker.register('sw.js');
     }
+async function compartilharPDF() {
+  const original = document.getElementById('pdf-content');
+  const clone = original.cloneNode(true);
+
+  const textareas = clone.querySelectorAll('textarea');
+  textareas.forEach(textarea => {
+    const div = document.createElement('div');
+    div.style.whiteSpace = 'pre-wrap';
+    div.style.border = '1px solid #ccc';
+    div.style.padding = '5px';
+    div.style.minHeight = '80px';
+    div.style.fontWeight = 'bold';
+    div.style.fontSize = '15px';
+    div.style.backgroundColor = 'white';
+    div.style.color = 'black';
+    div.textContent = textarea.value;
+    textarea.parentNode.replaceChild(div, textarea);
+  });
+
+  const container = document.createElement('div');
+  container.style.position = 'absolute';
+  container.style.left = '-9999px';
+  container.appendChild(clone);
+  document.body.appendChild(container);
+
+  const opt = {
+    margin: 10,
+    filename: 'relatorio_ocorrencia.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 2, useCORS: true },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
+  const worker = html2pdf().set(opt).from(clone);
+
+  // Gera blob
+  const blob = await worker.outputPdf('blob');
+
+  const file = new File([blob], 'relatorio_ocorrencia.pdf', { type: 'application/pdf' });
+
+  // Verifica se navegador suporta compartilhamento
+  if (navigator.canShare && navigator.canShare({ files: [file] })) {
+    try {
+      await navigator.share({
+        title: 'Relatório de Ocorrência',
+        text: 'Confira o relatório preenchido.',
+        files: [file]
+      });
+    } catch (err) {
+      alert('Compartilhamento cancelado ou falhou.');
+    }
+  } else {
+    alert('Compartilhamento de arquivos não suportado neste navegador.');
+  }
+
+  document.body.removeChild(container);
+}
 
   </script>
 </body>
