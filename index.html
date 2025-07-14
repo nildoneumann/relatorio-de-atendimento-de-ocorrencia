@@ -5,8 +5,6 @@
   <meta charset="UTF-8">
   <title>Relatório de Atendimento de Ocorrência</title>
   <meta name="theme-color" content="#ffffff">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icon-192.png">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
     body {
@@ -18,189 +16,218 @@
       margin: auto;
       color: #084808;
     }
-
     h1 {
       text-align: center;
       font-size: 22px;
       margin-top: 1px;
       color: blue;
     }
-
     .logo-container {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1px;
     }
-
     .logo {
       width: 80px;
     }
-
-    .linha-horizontal {
+    .linha-horizontal, .linha-horizontal-2, .linha-horizontal-3 {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
       margin-top: 2px;
     }
-    .linha-horizontal-2 {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 2px;
-    }
-    .linha-horizontal-3 {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 2px;
-    }
-
-    .linha-horizontal label {
+    .linha-horizontal label, .linha-horizontal-2 label, .linha-horizontal-3 label {
       flex: 1;
       min-width: 180px;
     }
-    .linha-horizontal-2 label {
-      flex: 1;
-      min-width: 180px;
-    }
-    .linha-horizontal-3 label {
-      flex: 1;
-      min-width: 180px;
-    }
-
     label {
       display: block;
       margin-top: 4px;
     }
-
     input[type="text"], input[type="date"], input[type="time"], textarea {
       width: 100%;
       padding: 5px;
       font-weight: bold;
       font-size: 15px;
-color: blue;
+      color: blue;
     }
-
     textarea {
       height: 80px;
-color: blue;
+      color: blue;
     }
-
     .btn {
       margin-top: 20px;
       padding: 10px 15px;
       font-weight: bold;
-      font-size: 16px;
+      font-size: 20px;
       background-color: #ADD8E6;
       color: blue;
+      border: none;
+      cursor: pointer;
     }
-
     p {
       color: red;
       margin-top: 4px;
       font-size: 12px;
     }
-
     #pdf-content {
       background-color: #D6FFFF;
       padding: 20px;
     }
-
   </style>
 </head>
 <body>
 
-  <div class="logo-container">
-    <img src="logo-prefeitura.png" alt="Prefeitura" class="logo">
-    <img src="logo-setran.png" alt="Setran" class="logo">
-  </div>
+<div class="logo-container">
+  <img src="logo-prefeitura.png" alt="Prefeitura" class="logo">
+  <img src="logo-setran.png" alt="Setran" class="logo">
+</div>
 
 <div id="pdf-content">
-  <h1><U>RELATÓRIO DE ATENDIMENTO DE OCORRÊNCIA</U></h1>
+  <h1><u>RELATÓRIO DE ATENDIMENTO DE OCORRÊNCIA</u></h1>
 
-    <label>NÚMERO: <input type="text" name="numero"style="width: 50px;"> /2025</label>
+  <label>1 - NÚMERO: <input type="text" name="numero" style="width: 50px;"> /2025</label>
 
-    <div class="linha-horizontal">
-      <label>Data: <input type="date" name="data"></label>
-      <label>Hora Início: <input type="time" name="hora_inicio"></label>
-      <label>Hora Término: <input type="time" name="hora_termino"></label>
-    </div>
+  <div class="linha-horizontal">
+    <label>Data: <input type="date" name="data"></label>
+    <label>Hora Início: <input type="time" name="hora_inicio"></label>
+    <label>Hora Término: <input type="time" name="hora_termino"></label>
+  </div>
 
-    <label>2 - SOLICITANTE:</label>
-    <label>NÚMERO DO TELEFONE: <input type="text" name="telefone"></label>
-    <label>LOCAL DA OCORRÊNCIA: <input type="text" name="local"></label>
-    <label>SITUAÇÃO INFORMADA: <textarea name="situacao"></textarea></label>
+  <label>2 - SOLICITANTE:</label>
+  <label>NÚMERO DO TELEFONE: <input type="text" name="telefone"></label>
+  <label>LOCAL DA OCORRÊNCIA: <input type="text" name="local"></label>
+  <label>SITUAÇÃO INFORMADA: <textarea name="situacao"></textarea></label>
 
-    <label>3 - RELATÓRIO DO ATENDIMENTO E AÇÕES REALIZADAS: <textarea name="relatorio"></textarea></label>
+  <label>3 - RELATÓRIO DO ATENDIMENTO E AÇÕES REALIZADAS: <textarea name="relatorio"></textarea></label>
 
-    <label>- Autos de infração lavrados: <input type="text" name="autos"></label>
-    <label>- Número de pessoas atendidas: <input type="text" name="pessoas_atendidas"></label>
-    <label>- Veículos recolhidos: <input type="text" name="veiculos"></label>
+  <label>- Autos de infração lavrados: <input type="text" name="autos"></label>
+  <label>- Número de pessoas atendidas: <input type="text" name="pessoas_atendidas"></label>
+  <label>- Veículos recolhidos: <input type="text" name="veiculos"></label>
 
-    <label>4 - EQUIPE:</label>
+  <label>4 - EQUIPE:</label>
   <div class="linha-horizontal-2">
-    <label>Nome/Assinatura/Responsável pelo preenchimento: <input type="text" name="responsavel"></label>
+    <label>Nome Responsável pelo preenchimento: <input type="text" name="responsavel"></label>
     <label>Nome/Assinatura 2: <input type="text" name="assinatura2"></label>
-    </div>
+
+  </div>
   <div class="linha-horizontal-3">
     <label>Nome/Assinatura 3: <input type="text" name="assinatura3"></label>
     <label>Nome/Assinatura 4: <input type="text" name="assinatura4"></label>
-    </div>
-    <label>VTR: <input type="text" name="vtr"></label>
-
-    <p><strong>OBS:</strong> ESTE DOCUMENTO É UMA COLETA PRELIMINAR DE DADOS, PARA CONTROLE DE ATENDIMENTOS DE ACIDENTES / OCORRÊNCIA DA SETRAN, NÃO SUBSTITUI O REGISTRO REALIZADO POR OUTROS ÓRGÃOS.</p>
- 
   </div>
+  <label>VTR: <input type="text" name="vtr"></label>
+<label>Assinaturas:</label>
+<canvas id="assinatura" width="800" height="50" style="border:1px solid #000;"></canvas><br>
+
+  <p><strong>OBS:</strong> ESTE DOCUMENTO É UMA COLETA PRELIMINAR DE DADOS, PARA CONTROLE DE ATENDIMENTOS DE ACIDENTES / OCORRÊNCIA DA SETRAN, NÃO SUBSTITUI O REGISTRO REALIZADO POR OUTROS ÓRGÃOS.</p>
+
+  
+</div>
+<button type="button" class="btn" onclick="limparAssinatura()">Limpar Assinatura</button>
 <button type="button" class="btn" onclick="gerarPDF()">Baixar PDF</button>
-  <button class="btn" onclick="compartilharPDF()">Compartilhar PDF</button>
-  <script>
-    function gerarPDF() {
-      const original = document.getElementById('pdf-content');
-      const clone = original.cloneNode(true);
-      const textareas = clone.querySelectorAll('textarea');
-      textareas.forEach(textarea => {
-        const div = document.createElement('div');
-        div.style.whiteSpace = 'pre-wrap';
-        div.style.border = '1px solid #ccc';
-        div.style.padding = '5px';
-        div.style.minHeight = '80px';
-        div.style.fontWeight = 'bold';
-        div.style.fontSize = '15px';
-        div.style.backgroundColor = 'white';  // <- isso resolve o fundo transparente
-        div.style.color = 'blue'; // <- cor da fonte
-        div.textContent = textarea.value;
-        textarea.parentNode.replaceChild(div, textarea);
-      });
+<button type="button" class="btn" onclick="compartilharPDF()">Compartilhar PDF</button>
 
-      const container = document.createElement('div');
-      container.style.position = 'absolute';
-      container.style.left = '-9999px';
-      container.appendChild(clone);
-      document.body.appendChild(container); 
+<script>
+const canvas = document.getElementById('assinatura');
+const ctx = canvas.getContext('2d');
+let desenhando = false;
 
-      html2pdf()
-        .set({
-          margin: [10, 10, 10, 10],
-          filename: 'relatorio_ocorrencia.pdf',
-          image: { type: 'jpeg', quality: 0.98 },
-          html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
-          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-        })
+function getPos(event) {
+  if (event.touches) {
+    const rect = canvas.getBoundingClientRect();
+    return {
+      x: event.touches[0].clientX - rect.left,
+      y: event.touches[0].clientY - rect.top
+    };
+  } else {
+    return { x: event.offsetX, y: event.offsetY };
+  }
+}
 
-        .from(clone)
-        .save()
-        .then(() => {
-          document.body.removeChild(container);
-        });
-    }
-if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
-    }
+function iniciarDesenho(e) {
+  desenhando = true;
+  const pos = getPos(e);
+  ctx.beginPath();
+  ctx.moveTo(pos.x, pos.y);
+}
+
+function desenhar(e) {
+  if (!desenhando) return;
+  e.preventDefault();
+  const pos = getPos(e);
+  ctx.lineTo(pos.x, pos.y);
+  ctx.stroke();
+}
+
+function pararDesenho() {
+  desenhando = false;
+}
+
+canvas.addEventListener('mousedown', iniciarDesenho);
+canvas.addEventListener('mousemove', desenhar);
+canvas.addEventListener('mouseup', pararDesenho);
+canvas.addEventListener('mouseleave', pararDesenho);
+
+canvas.addEventListener('touchstart', iniciarDesenho);
+canvas.addEventListener('touchmove', desenhar);
+canvas.addEventListener('touchend', pararDesenho);
+
+function limparAssinatura() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
+
+function prepararAssinatura(clone) {
+  const canvasOriginal = document.getElementById('assinatura');
+  const assinaturaClone = clone.querySelector('#assinatura');
+  if (canvasOriginal && assinaturaClone) {
+    const imgData = canvasOriginal.toDataURL();
+    const img = document.createElement('img');
+    img.src = imgData;
+    img.style.border = '1px solid #000';
+    img.width = canvasOriginal.width;
+    img.height = canvasOriginal.height;
+    assinaturaClone.parentNode.replaceChild(img, assinaturaClone);
+  }
+}
+
+function gerarPDF() {
+  const original = document.getElementById('pdf-content');
+  const clone = original.cloneNode(true);
+  const textareas = clone.querySelectorAll('textarea');
+  textareas.forEach(textarea => {
+    const div = document.createElement('div');
+    div.style.whiteSpace = 'pre-wrap';
+    div.style.border = '1px solid #ccc';
+    div.style.padding = '5px';
+    div.style.minHeight = '80px';
+    div.style.fontWeight = 'bold';
+    div.style.fontSize = '15px';
+    div.style.backgroundColor = 'white';
+    div.style.color = 'blue';
+    div.textContent = textarea.value;
+    textarea.parentNode.replaceChild(div, textarea);
+  });
+  prepararAssinatura(clone);
+  const container = document.createElement('div');
+  container.style.position = 'absolute';
+  container.style.left = '-9999px';
+  container.appendChild(clone);
+  document.body.appendChild(container);
+  html2pdf().set({
+    margin: [10, 10, 10, 10],
+    filename: 'relatorio_ocorrencia.pdf',
+    image: { type: 'jpeg', quality: 0.98 },
+    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  }).from(clone).save().then(() => {
+    document.body.removeChild(container);
+  });
+}
+
 async function compartilharPDF() {
   const original = document.getElementById('pdf-content');
   const clone = original.cloneNode(true);
-
   const textareas = clone.querySelectorAll('textarea');
   textareas.forEach(textarea => {
     const div = document.createElement('div');
@@ -215,13 +242,12 @@ async function compartilharPDF() {
     div.textContent = textarea.value;
     textarea.parentNode.replaceChild(div, textarea);
   });
-
+  prepararAssinatura(clone);
   const container = document.createElement('div');
   container.style.position = 'absolute';
   container.style.left = '-9999px';
   container.appendChild(clone);
   document.body.appendChild(container);
-
   const opt = {
     margin: 10,
     filename: 'relatorio_ocorrencia.pdf',
@@ -229,15 +255,9 @@ async function compartilharPDF() {
     html2canvas: { scale: 2, useCORS: true },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
-
   const worker = html2pdf().set(opt).from(clone);
-
-  // Gera blob
   const blob = await worker.outputPdf('blob');
-
   const file = new File([blob], 'relatorio_ocorrencia.pdf', { type: 'application/pdf' });
-
-  // Verifica se navegador suporta compartilhamento
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try {
       await navigator.share({
@@ -251,10 +271,9 @@ async function compartilharPDF() {
   } else {
     alert('Compartilhamento de arquivos não suportado neste navegador.');
   }
-
   document.body.removeChild(container);
 }
+</script>
 
-  </script>
 </body>
 </html>
