@@ -61,7 +61,7 @@
       padding: 10px 15px;
       font-weight: bold;
       font-size: 20px;
-      background-color: #ADD8E6;
+      background-color: #93BF85;
       color: blue;
       border: none;
       cursor: pointer;
@@ -128,8 +128,12 @@
 <button type="button" class="btn" onclick="limparAssinatura()">Limpar Assinatura</button>
 <button type="button" class="btn" onclick="gerarPDF()">Baixar PDF</button>
 <button type="button" class="btn" onclick="compartilharPDF()">Compartilhar PDF</button>
-
+<button type="button" class="btn" onclick="imprimir()">Imprimir</button>
 <script>
+  function imprimir() {
+  window.print();
+}
+
 const canvas = document.getElementById('assinatura');
 const ctx = canvas.getContext('2d');
 let desenhando = false;
