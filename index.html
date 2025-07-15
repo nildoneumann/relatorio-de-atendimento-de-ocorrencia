@@ -121,21 +121,22 @@
     <label>Nome Agente 3: <input type="text" name="assinatura3"></label>
     <label>Nome Agente 4: <input type="text" name="assinatura4"></label>
   </div>
-  <label>VTR: <input type="text" name="vtr"></label>
+  <label>VTR(s): <input type="text" name="vtr"></label>
 <label>Assinaturas:</label>
 <canvas id="assinatura" width="690" height="70" style="border:1px solid #000;"></canvas><br>
 
   <p><strong>OBS:</strong> Este documento é uma coleta preliminar de dados,para controle de atendimentos de ACIDENTES/OCORRÊNCIA da SETRAN,e não substitui o registro realizado por outros órgãos.</p>
-<div class="neumann">
-<div style="position: relative;">
+  <div class="neumann">
+  <div style="position: relative;">
   <label for="meuInput" style="position: absolute; right: 0;">© 2025 Leonildo.Neumann</label>
-</div>
-  
+  </div>
+ </div> 
 </div>
 <button type="button" class="btn" onclick="limparAssinatura()">Limpar Assinatura</button>
+<button type="button" class="btn" onclick="imprimir()">Imprimir</button>
 <button type="button" class="btn" onclick="gerarPDF()">Baixar PDF</button>
 <button type="button" class="btn" onclick="compartilharPDF()">Compartilhar PDF</button>
-<button type="button" class="btn" onclick="imprimir()">Imprimir</button>
+
 <script>
   function imprimir() {
   window.print();
