@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Relatório de Atendimento de Ocorrência</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon-192.png">
   <meta name="theme-color" content="#ffffff">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
@@ -90,10 +92,10 @@
   </style>
 </head>
 <body>
-<label for="nome" style="font-size: 6px;">© 2025 Leonildo.Neumann</label>
+<label for="nome" style="font-size: 5px;">© 2025 Leonildo.Neumann</label>
 <div class="logo-container">
   <img src="logo-prefeitura.png" alt="Prefeitura" class="logo">
-  <label for="nome" style="font-size: 25px;">SETRAN GUARAPUAVA</label>
+  <label for="nome" style="font-size: 26px;">SETRAN GUARAPUAVA</label>
   <img src="logo-setran.png" alt="Setran" class="logo">
 </div>
 
@@ -125,8 +127,8 @@
 <label>VTR(s): <input type="text" name="vtr"></label>
 
   <div class="linha-horizontal-3">
-    <label>Agente 1: <input type="text" name="assinatura1"></label>
-    <label>Agente 2: <input type="text" name="assinatura2"></label>
+    <label>Nome Agente 1: <input type="text" name="assinatura1"></label>
+    <label>Nome Agente 2: <input type="text" name="assinatura2"></label>
   </div>
 <div class="linha-horizontal-2">
 <label><input type="checkbox" onclick="toggleAgente('agente1')"> Incluir Ass. Agente 1</label>
@@ -264,6 +266,11 @@ async function compartilharPDF() {
     } else {
       alert('Seu dispositivo não suporta o compartilhamento de arquivos.');
     }
+  }
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log('Service Worker registrado com sucesso'))
+      .catch(error => console.log('Erro ao registrar o Service Worker:', error));
   }
 
 </script>
