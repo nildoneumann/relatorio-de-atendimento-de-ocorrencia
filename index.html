@@ -65,7 +65,7 @@
       padding: 5px;
       font-weight: bold;
       font-size: 14px;
-      height: 80px;
+      height: auto;
       color: blue;
     }
     .btn {
@@ -276,7 +276,12 @@ if ('serviceWorker' in navigator) {
       .then(() => console.log('Service Worker registrado com sucesso'))
       .catch(error => console.log('Erro ao registrar o Service Worker:', error));
   }
-
+document.querySelectorAll("textarea").forEach(textarea => {
+    textarea.addEventListener("input", () => {
+      textarea.style.height = "auto";
+      textarea.style.height = (textarea.scrollHeight) + "px";
+    });
+  });
 </script>
 
 </script>
