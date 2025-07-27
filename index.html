@@ -6,12 +6,16 @@
   <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icon-192.png">
   <meta name="theme-color" content="#ffffff">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
+    * {
+      box-sizing: border-box;
+    }
     body {
       font-family: Arial, sans-serif;
       padding: 15px;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: bold;
       max-width: 900px;
       margin: auto;
@@ -27,50 +31,64 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 1px;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 10px;
     }
     .logo {
       width: 80px;
+      max-width: 30%;
+      height: auto;
     }
-    .linha-horizontal, .linha-horizontal-2, .linha-horizontal-3 {
+    .linha-horizontal,
+    .linha-horizontal-2,
+    .linha-horizontal-3 {
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
-      margin-top: 3px;
+      margin-top: 10px;
     }
-    .linha-horizontal label, .linha-horizontal-2 label, .linha-horizontal-3 label {
+    .linha-horizontal label,
+    .linha-horizontal-2 label,
+    .linha-horizontal-3 label {
       flex: 1;
       min-width: 180px;
     }
     label {
       display: block;
-      margin-top: 4px;
+      margin-top: 8px;
     }
-    input[type="text"], input[type="date"], input[type="time"], textarea {
-      width: 99%;
+    input[type="text"],
+    input[type="date"],
+    input[type="time"],
+    textarea {
+      width: 100%;
       padding: 5px;
       font-weight: bold;
       font-size: 15px;
       color: blue;
     }
     textarea {
-      height: 150px;
+      height: 80px;
       color: blue;
     }
     .btn {
-      margin-top: 20px;
+      margin-top: 10px;
       padding: 10px 15px;
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       background-color: #93BF85;
       color: blue;
       border: none;
       cursor: pointer;
-      border-radius: 8px; /* Cantos arredondados */
+      width: 100%;
+    }
+    .btn:not(:last-child) {
+      margin-bottom: 10px;
     }
     p {
       color: red;
-      margin-top: 6px;
+      margin-top: 4px;
       font-size: 13px;
       background-color: yellow;
     }
@@ -78,10 +96,18 @@
       background-color: #D6FFFF;
       padding: 20px;
     }
+    canvas#assinatura {
+      width: 100%;
+      max-width: 100%;
+      height: auto;
+      border: 1px solid #000;
+    }
     .neumann {
       font-size: 10px;
       color: black;
+      text-align: right;
     }
+
   </style>
 </head>
 <body>
