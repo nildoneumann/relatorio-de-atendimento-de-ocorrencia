@@ -268,6 +268,8 @@ function gerarPDF() {
 async function compartilharPDF() {
   const original = document.getElementById('pdf-content');
   const clone = original.cloneNode(true);
+
+  // Substitui textareas por divs com conteúdo
   const textareas = clone.querySelectorAll('textarea');
   textareas.forEach(textarea => {
     const div = document.createElement('div');
@@ -282,22 +284,28 @@ async function compartilharPDF() {
     div.textContent = textarea.value;
     textarea.parentNode.replaceChild(div, textarea);
   });
+
   prepararAssinatura(clone);
+
   const container = document.createElement('div');
   container.style.position = 'absolute';
   container.style.left = '-9999px';
   container.appendChild(clone);
   document.body.appendChild(container);
+
   const opt = {
     margin: 10,
     filename: 'relatorio_ocorrencia.pdf',
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 2, useCORS: true },
+    html2canvas: { scale: 4, useCORS: true, scrollY: 0 }, // <- mais qualidade e corrige corte
     jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' }
   };
+
   const worker = html2pdf().set(opt).from(clone);
   const blob = await worker.outputPdf('blob');
+
   const file = new File([blob], 'relatorio_ocorrencia.pdf', { type: 'application/pdf' });
+
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try {
       await navigator.share({
@@ -311,8 +319,10 @@ async function compartilharPDF() {
   } else {
     alert('Compartilhamento de arquivos não suportado neste navegador.');
   }
+
   document.body.removeChild(container);
 }
+
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.register('sw.js')
       .then(() => console.log('Service Worker registrado com sucesso'))
