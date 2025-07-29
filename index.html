@@ -169,9 +169,7 @@
 <button type="button" class="btn" onclick="gerarPDF()">Baixar PDF</button>
 
 <script>
-function imprimir() {
-  window.print();
-}
+
 const canvas = document.getElementById('assinatura');
 const ctx = canvas.getContext('2d');
 let desenhando = false;
@@ -234,6 +232,13 @@ function prepararAssinatura(clone) {
   }
 }
 
+function gerarNomePDFComDataHora() {
+  const agora = new Date();
+  const data = agora.toLocaleDateString('pt-BR').split('/').reverse().join('-');
+  const hora = agora.toTimeString().split(' ')[0].replace(/:/g, '-');
+  return `relatorio_${data}_${hora}.pdf`;
+}
+
 function gerarPDF() {
   const original = document.getElementById('pdf-content');
   const clone = original.cloneNode(true);
@@ -259,7 +264,7 @@ function gerarPDF() {
   document.body.appendChild(container);
   html2pdf().set({
     margin: [10, 10, 10, 10],
-    filename: 'relatorio_ocorrencia.pdf',
+    filename: gerarNomePDFComDataHora(),
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
     jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' }
@@ -272,7 +277,6 @@ async function compartilharPDF() {
   const original = document.getElementById('pdf-content');
   const clone = original.cloneNode(true);
 
-  // Substitui textareas por divs com conteúdo
   const textareas = clone.querySelectorAll('textarea');
   textareas.forEach(textarea => {
     const div = document.createElement('div');
@@ -298,16 +302,16 @@ async function compartilharPDF() {
 
   const opt = {
     margin: 10,
-    filename: 'relatorio_ocorrencia.pdf',
+    filename: gerarNomePDFComDataHora(),
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 4, useCORS: true, scrollY: 0 }, // <- mais qualidade e corrige corte
+    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
     jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' }
   };
 
   const worker = html2pdf().set(opt).from(clone);
   const blob = await worker.outputPdf('blob');
 
-  const file = new File([blob], 'relatorio_ocorrencia.pdf', { type: 'application/pdf' });
+  const file = new File([blob], gerarNomePDFComDataHora(), { type: 'application/pdf' });
 
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try {
@@ -326,11 +330,12 @@ async function compartilharPDF() {
   document.body.removeChild(container);
 }
 
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('sw.js')
-      .then(() => console.log('Service Worker registrado com sucesso'))
-      .catch(error => console.log('Erro ao registrar o Service Worker:', error));
-  }
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js')
+    .then(() => console.log('Service Worker registrado com sucesso'))
+    .catch(error => console.log('Erro ao registrar o Service Worker:', error));
+}
+
 </script>
 
 </body>
