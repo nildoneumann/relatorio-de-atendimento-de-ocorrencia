@@ -89,6 +89,16 @@
       cursor: pointer;
       width: 100%;
     }
+    .botao {
+      color: yellow;
+      padding: 10px 15px;
+      text-align: center;
+      display: inline-block;
+      font-size: 15px;
+      cursor: pointer;
+      border-radius: 10px; /* Bordas arredondadas */
+      width: 100%;
+    }
     .btn:not(:last-child) {
       margin-bottom: 10px;
     }
@@ -169,7 +179,7 @@
 <button type="button" class="btn" onclick="limparAssinatura()">Limpar Assinatura</button>
 <button type="button" class="btn" onclick="compartilharPDF()">Compartilhar PDF</button>
 <button type="button" class="btn" onclick="gerarPDF()">Baixar PDF</button>
-
+<a href="https://www.ctbdigital.com.br/busca-artigo" target="_blank" class="botao">CTB DIGITAL - código de trânsito brasileiro</a>
 <script>
 
 const canvas = document.getElementById('assinatura');
