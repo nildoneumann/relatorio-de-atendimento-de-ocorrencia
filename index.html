@@ -111,7 +111,7 @@
     }
     #pdf-content {
       background-color: #D6FFFF;
-      padding: 20px;
+      padding: 15px 10px;
       border-radius: 4px;
     }
     canvas#assinatura {
@@ -121,7 +121,16 @@
       font-size: 10px;
       color: black;
       text-align: right;
+      margin-bottom: 20px;
     }
+    .equipe {
+      margin-top: 5px;
+      background-color: #a4c4d2;
+      padding: 3px;
+      border-radius: 4px;
+      color: #004680;
+    }
+
 
   </style>
 </head>
@@ -154,7 +163,7 @@
   <label>- Autos de infração lavrados: <input type="text" name="autos"></label>
   <label>- Número de pessoas atendidas: <input type="text" name="pessoas_atendidas"></label>
   <label>- Veículos recolhidos: <input type="text" name="veiculos"></label>
-
+  <div class="equipe">
   <label>4 - EQUIPE:</label>
   <div class="linha-horizontal-2">
     <label>Agente 1 (Responsável pelo preenchimento): <input type="text" name="responsavel"></label>
@@ -168,7 +177,7 @@
 <label>Assinaturas (Agentes 1, 2, 3 e 4):</label>
 
 <canvas id="assinatura" width="690" height="160" style="border:1px solid #000;"></canvas><br>
-  <p><strong>OBS:</strong> Este documento é uma coleta preliminar de dados,para controle de atendimentos de ACIDENTES/OCORRÊNCIA da SETRAN,e não substitui o registro realizado por outros órgãos.</p>
+  <p><strong>OBS:</strong> Este documento é uma coleta preliminar de dados, para controle de atendimentos de ACIDENTES/OCORRÊNCIA da SETRAN, e não substitui o registro realizado por outros órgãos.</p>
 
   <div class="neumann">
    <div style="position: relative;">
