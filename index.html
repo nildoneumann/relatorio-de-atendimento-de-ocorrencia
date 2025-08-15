@@ -4,14 +4,12 @@
   <meta charset="UTF-8">
   <title>Relatório de Atendimento de Ocorrência</title>
   <link rel="manifest" href="manifest.json">
-<link rel="icon" href="icon-192.png">
+  <link rel="icon" href="icon-192.png">
   <meta name="theme-color" content="#ffffff">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
     body {
       font-family: Arial, sans-serif;
       padding: 15px;
@@ -22,126 +20,53 @@
       color: #15400e;
       background-color: #0088FF;
     }
-    h1 {
-      text-align: center;
-      font-size: 16px;
-      margin-top: 1px;
-      color: blue;
-    }
+    h1 { text-align: center; font-size: 16px; margin-top: 1px; color: blue; }
     .logo-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-bottom: 10px;
-      background-color: #FFFFFF;
-      border-radius: 4px;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap;
+      gap: 10px; margin-bottom: 10px; background-color: #FFFFFF; border-radius: 4px;
     }
-    .logo {
-      width: 120px;
-      max-width: 30%;
-      height: auto;
+    .logo { width: 120px; max-width: 30%; height: auto; }
+    .linha-horizontal, .linha-horizontal-2, .linha-horizontal-3 {
+      display: flex; gap: 20px; flex-wrap: wrap; margin-top: 3px;
     }
-    .linha-horizontal,
-    .linha-horizontal-2,
-    .linha-horizontal-3 {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-      margin-top: 3px;
+    .linha-horizontal label, .linha-horizontal-2 label, .linha-horizontal-3 label {
+      flex: 1; min-width: 180px;
     }
-    .linha-horizontal label,
-    .linha-horizontal-2 label,
-    .linha-horizontal-3 label {
-      flex: 1;
-      min-width: 180px;
-    }
-    label {
-      display: block;
-      margin-top: 4px;
-    }
-    input[type="text"],
-    input[type="date"],
-    input[type="time"],
-    textarea {
-      width: 100%;
-      padding: 5px;
-      font-weight: bold;
-      font-size: 14px;
-      color: blue;
-      border-radius: 4px;
+    label { display: block; margin-top: 4px; }
+    input[type="text"], input[type="date"], input[type="time"], textarea {
+      width: 100%; padding: 5px; font-weight: bold; font-size: 14px;
+      color: blue; border-radius: 4px;
     }
     textarea {
-      height: 120px;
-      color: blue;
-      font-family: Arial, sans-serif;
-      font-size: 14px;
+      height: 120px; color: blue; font-family: Arial, sans-serif; font-size: 14px;
     }
     .btn {
-      margin-top: 10px;
-      padding: 10px 15px;
-      font-weight: bold;
-      font-size: 18px;
-      background-color: #D6FFFF;
-      color: blue;
-      border-radius: 10px;
-      cursor: pointer;
-      width: 100%;
+      margin-top: 10px; padding: 10px 15px; font-weight: bold; font-size: 18px;
+      background-color: #D6FFFF; color: blue; border-radius: 10px;
+      cursor: pointer; width: 100%;
     }
     .botao {
-      color: yellow;
-      padding: 10px 15px;
-      text-align: center;
-      display: inline-block;
-      font-size: 15px;
-      cursor: pointer;
-      border-radius: 10px; /* Bordas arredondadas */
-      width: 100%;
+      color: yellow; padding: 10px 15px; text-align: center; display: inline-block;
+      font-size: 15px; cursor: pointer; border-radius: 10px; width: 100%;
     }
-    .btn:not(:last-child) {
-      margin-bottom: 10px;
-    }
+    .btn:not(:last-child) { margin-bottom: 10px; }
     p {
-      color: red;
-      margin-top: 1px;
-      font-size: 9px;
-      text-align: center;
-      background-color: yellow;
+      color: red; margin-top: 1px; font-size: 9px; text-align: center; background-color: yellow;
     }
-    #pdf-content {
-      background-color: #D6FFFF;
-      padding: 10px 10px;
-      border-radius: 4px;
-    }
-    canvas#assinatura {
-      border: 1px solid #000;
-    }
-    .neumann {
-      font-size: 8px;
-      color: black;
-      text-align: right;
-      margin-bottom: 15px;
-    }
-    .equipe {
-      margin-top: 1px;
-      background-color: #dbead5;
-      padding: 3px;
-      border-radius: 4px;
-      color: #132c0d;
-    }
-
-
+    #pdf-content { background-color: #D6FFFF; padding: 10px; border-radius: 4px; }
+    canvas#assinatura { border: 1px solid #000; }
+    .neumann { font-size: 8px; color: black; text-align: right; margin-bottom: 15px; }
+    .equipe { margin-top: 1px; background-color: #dbead5; padding: 3px; border-radius: 4px; color: #132c0d; }
   </style>
 </head>
 <body>
 <label for="nome" style="font-size: 6px;">© 2025 Leonildo.Neumann</label>
-  <div id="pdf-content">
-<div class="logo-container">
-  <img src="logo-prefeitura.png" crossorigin="anonymous" alt="Prefeitura" class="logo">
-<label for="nome" style="font-size: 26px;">SETRAN</label>
-  <img src="logo-setran.png" crossorigin="anonymous" alt="Setran" class="logo">
-</div>
+<div id="pdf-content">
+  <div class="logo-container">
+    <img src="logo-prefeitura.png" crossorigin="anonymous" alt="Prefeitura" class="logo">
+    <label for="nome" style="font-size: 26px;">SETRAN</label>
+    <img src="logo-setran.png" crossorigin="anonymous" alt="Setran" class="logo">
+  </div>
   <h1><u>RELATÓRIO DE ATENDIMENTO DE OCORRÊNCIA</u></h1>
 
   <label>1 - NÚMERO: <input type="text" name="numero" style="width: 70px;"> /2025</label>
@@ -152,45 +77,46 @@
     <label>Hora Término: <input type="time" name="hora_termino"></label>
   </div>
   <div class="linha-horizontal">
-  <label>2 - SOLICITANTE: <input type="text" name="solicitante"></label>
-  <label>NÚMERO DO TELEFONE: <input type="text" name="telefone"></label>
+    <label>2 - SOLICITANTE: <input type="text" name="solicitante"></label>
+    <label>NÚMERO DO TELEFONE: <input type="text" name="telefone"></label>
   </div>
   <label>LOCAL DA OCORRÊNCIA: <input type="text" name="local"></label>
   <label>SITUAÇÃO INFORMADA: <textarea name="situacao"></textarea></label>
-
   <label>3 - RELATÓRIO DO ATENDIMENTO E AÇÕES REALIZADAS: <textarea name="relatorio"></textarea></label>
-
   <label>- Autos de infração lavrados: <input type="text" name="autos"></label>
   <label>- Número de pessoas atendidas: <input type="text" name="pessoas_atendidas"></label>
   <label>- Veículos recolhidos: <input type="text" name="veiculos"></label>
+
   <div class="equipe">
-  <label>4 - EQUIPE:</label>
-  <div class="linha-horizontal-2">
-    <label>Agente 1 (Responsável pelo preenchimento): <input type="text" name="responsavel"></label>
-    <label>Nome Agente 2: <input type="text" name="assinatura2"></label>
+    <label>4 - EQUIPE:</label>
+    <div class="linha-horizontal-2">
+      <label>Agente 1 (Responsável pelo preenchimento): <input type="text" name="responsavel"></label>
+      <label>Nome Agente 2: <input type="text" name="assinatura2"></label>
+    </div>
+    <div class="linha-horizontal-3">
+      <label>Nome Agente 3: <input type="text" name="assinatura3"></label>
+      <label>Nome Agente 4: <input type="text" name="assinatura4"></label>
+    </div>
+    <label>VTR(s): <input type="text" name="vtr"></label>
+    <label>Assinaturas (Agentes 1, 2, 3 e 4):</label>
+    <canvas id="assinatura" width="690" height="160"></canvas><br>
   </div>
-  <div class="linha-horizontal-3">
-    <label>Nome Agente 3: <input type="text" name="assinatura3"></label>
-    <label>Nome Agente 4: <input type="text" name="assinatura4"></label>
-  </div>
-  <label>VTR(s): <input type="text" name="vtr"></label>
-<label>Assinaturas (Agentes 1, 2, 3 e 4):</label>
-<canvas id="assinatura" width="690" height="160" style="border:1px solid #000;"></canvas><br>
-  </div>
-  <p><strong>OBS:</strong> Este documento é uma coleta preliminar de dados, para controle de atendimentos de ACIDENTES/OCORRÊNCIA da SETRAN, e não substitui o registro realizado por outros órgãos.</p>
+
+  <p><strong>OBS:</strong> Este documento é uma coleta preliminar de dados...</p>
 
   <div class="neumann">
-   <div style="position: relative;">
-   <label for="meuInput" style="position: absolute; right: 0;">© 2025 Leonildo.Neumann</label>
+    <div style="position: relative;">
+      <label style="position: absolute; right: 0;">© 2025 Leonildo.Neumann</label>
+    </div>
   </div>
 </div>
-</div>
-<button type="button" class="btn" onclick="limparAssinatura()">Limpar Assinatura</button>
-<button type="button" class="btn" onclick="compartilharPDF()">Compartilhar PDF</button>
-<button type="button" class="btn" onclick="gerarPDF()">Baixar PDF</button>
-<a href="https://www.ctbdigital.com.br/busca-artigo" target="_blank" class="botao">CTB DIGITAL - código de trânsito brasileiro</a>
-<script>
 
+<button class="btn" onclick="limparAssinatura()">Limpar Assinatura</button>
+<button class="btn" onclick="compartilharPDF()">Compartilhar PDF</button>
+<button class="btn" onclick="gerarPDF()">Baixar PDF</button>
+<a href="https://www.ctbdigital.com.br/busca-artigo" target="_blank" class="botao">CTB DIGITAL</a>
+
+<script>
 const canvas = document.getElementById('assinatura');
 const ctx = canvas.getContext('2d');
 let desenhando = false;
@@ -198,22 +124,17 @@ let desenhando = false;
 function getPos(event) {
   if (event.touches) {
     const rect = canvas.getBoundingClientRect();
-    return {
-      x: event.touches[0].clientX - rect.left,
-      y: event.touches[0].clientY - rect.top
-    };
+    return { x: event.touches[0].clientX - rect.left, y: event.touches[0].clientY - rect.top };
   } else {
     return { x: event.offsetX, y: event.offsetY };
   }
 }
-
 function iniciarDesenho(e) {
   desenhando = true;
   const pos = getPos(e);
   ctx.beginPath();
   ctx.moveTo(pos.x, pos.y);
 }
-
 function desenhar(e) {
   if (!desenhando) return;
   e.preventDefault();
@@ -221,23 +142,17 @@ function desenhar(e) {
   ctx.lineTo(pos.x, pos.y);
   ctx.stroke();
 }
-
-function pararDesenho() {
-  desenhando = false;
-}
+function pararDesenho() { desenhando = false; }
 
 canvas.addEventListener('mousedown', iniciarDesenho);
 canvas.addEventListener('mousemove', desenhar);
 canvas.addEventListener('mouseup', pararDesenho);
 canvas.addEventListener('mouseleave', pararDesenho);
-
 canvas.addEventListener('touchstart', iniciarDesenho);
 canvas.addEventListener('touchmove', desenhar);
 canvas.addEventListener('touchend', pararDesenho);
 
-function limparAssinatura() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
+function limparAssinatura() { ctx.clearRect(0, 0, canvas.width, canvas.height); }
 
 function prepararAssinatura(clone) {
   const canvasOriginal = document.getElementById('assinatura');
@@ -308,7 +223,7 @@ async function compartilharPDF() {
     div.style.fontWeight = 'bold';
     div.style.fontSize = '14px';
     div.style.backgroundColor = 'white';
-    div.style.color = 'black';
+    div.style.color = 'blue';
     div.textContent = textarea.value;
     textarea.parentNode.replaceChild(div, textarea);
   });
@@ -322,15 +237,21 @@ async function compartilharPDF() {
   document.body.appendChild(container);
 
   const opt = {
-    margin: 5,
+    margin: [5, 5, 5, 5],
     filename: gerarNomePDFComDataHora(),
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 3, useCORS: true, scrollY: 0 },
+    html2canvas: { 
+      scale: 3,
+      useCORS: true,
+      scrollY: 0,
+      windowWidth: document.documentElement.scrollWidth,
+      windowHeight: document.documentElement.scrollHeight
+    },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
     jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
 
-  const worker = html2pdf().set(opt).from(clone);
-  const blob = await worker.outputPdf('blob');
+  const blob = await html2pdf().set(opt).from(clone).outputPdf('blob');
 
   const file = new File([blob], gerarNomePDFComDataHora(), { type: 'application/pdf' });
 
@@ -356,8 +277,6 @@ if ('serviceWorker' in navigator) {
     .then(() => console.log('Service Worker registrado com sucesso'))
     .catch(error => console.log('Erro ao registrar o Service Worker:', error));
 }
-
 </script>
-
 </body>
 </html>
