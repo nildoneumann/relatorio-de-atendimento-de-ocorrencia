@@ -24,7 +24,7 @@
     }
     h1 {
       text-align: center;
-      font-size: 19px;
+      font-size: 16px;
       margin-top: 1px;
       color: blue;
     }
@@ -49,7 +49,7 @@
       display: flex;
       gap: 20px;
       flex-wrap: wrap;
-      margin-top: 8px;
+      margin-top: 3px;
     }
     .linha-horizontal label,
     .linha-horizontal-2 label,
@@ -59,7 +59,7 @@
     }
     label {
       display: block;
-      margin-top: 8px;
+      margin-top: 4px;
     }
     input[type="text"],
     input[type="date"],
@@ -104,27 +104,27 @@
     }
     p {
       color: red;
-      margin-top: 2px;
-      font-size: 12px;
+      margin-top: 1px;
+      font-size: 9px;
       text-align: center;
       background-color: yellow;
     }
     #pdf-content {
       background-color: #D6FFFF;
-      padding: 14px 10px;
+      padding: 10px 10px;
       border-radius: 4px;
     }
     canvas#assinatura {
       border: 1px solid #000;
     }
     .neumann {
-      font-size: 9px;
+      font-size: 8px;
       color: black;
       text-align: right;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
     .equipe {
-      margin-top: 3px;
+      margin-top: 1px;
       background-color: #dbead5;
       padding: 3px;
       border-radius: 4px;
@@ -271,7 +271,7 @@ function gerarPDF() {
     div.style.padding = '5px';
     div.style.minHeight = '80px';
     div.style.fontWeight = 'bold';
-    div.style.fontSize = '15px';
+    div.style.fontSize = '14px';
     div.style.backgroundColor = 'white';
     div.style.color = 'blue';
     div.textContent = textarea.value;
@@ -284,11 +284,11 @@ function gerarPDF() {
   container.appendChild(clone);
   document.body.appendChild(container);
   html2pdf().set({
-    margin: [10, 10, 10, 10],
+    margin: [5, 5, 5, 5],
     filename: gerarNomePDFComDataHora(),
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
-    jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' }
+    html2canvas: { scale: 3, useCORS: true, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
   }).from(clone).save().then(() => {
     document.body.removeChild(container);
   });
@@ -306,7 +306,7 @@ async function compartilharPDF() {
     div.style.padding = '5px';
     div.style.minHeight = '80px';
     div.style.fontWeight = 'bold';
-    div.style.fontSize = '15px';
+    div.style.fontSize = '14px';
     div.style.backgroundColor = 'white';
     div.style.color = 'black';
     div.textContent = textarea.value;
@@ -322,11 +322,11 @@ async function compartilharPDF() {
   document.body.appendChild(container);
 
   const opt = {
-    margin: 10,
+    margin: 5,
     filename: gerarNomePDFComDataHora(),
     image: { type: 'jpeg', quality: 0.98 },
-    html2canvas: { scale: 4, useCORS: true, scrollY: 0 },
-    jsPDF: { unit: 'mm', format: 'a3', orientation: 'portrait' }
+    html2canvas: { scale: 3, useCORS: true, scrollY: 0 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
   };
 
   const worker = html2pdf().set(opt).from(clone);
