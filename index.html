@@ -38,7 +38,7 @@
       color: blue; border-radius: 4px;
     }
     textarea {
-      height: 155px; color: blue; font-family: Arial, sans-serif; font-size: 14px;
+      height: 177px; color: blue; font-family: Arial, sans-serif; font-size: 14px;
     }
     .btn {
       margin-top: 10px; padding: 10px 15px; font-weight: bold; font-size: 18px;
@@ -46,8 +46,8 @@
       cursor: pointer; width: 100%;
     }
     .botao {
-      color: yellow; padding: 10px 15px; text-align: center; display: inline-block;
-      font-size: 15px; cursor: pointer; border-radius: 10px; width: 100%;
+      color: green; padding: 10px 15px; text-align: center; display: inline-block;
+      font-size: 16px; cursor: pointer; border-radius: 10px; width: 100%; background-color: #D6FFFF;
     }
     .btn:not(:last-child) { margin-bottom: 10px; }
     p {
@@ -56,7 +56,7 @@
     #pdf-content { background-color: #D6FFFF; padding: 15px 10px; border-radius: 4px; }
     canvas#assinatura { border: 1px solid #000; }
     .neumann { font-size: 8px; color: black; text-align: right; margin-bottom: 15px; }
-    .equipe { margin-top: 5px; background-color: #dbead5; padding: 3px; border-radius: 4px; color: #132c0d; }
+    .equipe { margin-top: 3px; background-color: #dbead5; padding: 5px 3px; border-radius: 4px; color: #132c0d; }
   </style>
 </head>
 <body>
@@ -98,6 +98,8 @@
       <label>Nome Agente 4: <input type="text" name="assinatura4"></label>
     </div>
     <label>VTR(s): <input type="text" name="vtr"></label>
+   </div> 
+  <div class="assinatura">
     <label>Assinaturas (Agentes 1, 2, 3 e 4):</label>
     <canvas id="assinatura" width="690" height="160"></canvas><br>
   </div>
