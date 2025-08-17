@@ -27,7 +27,7 @@
     }
     .logo { width: 120px; max-width: 30%; height: auto; }
     .linha-horizontal, .linha-horizontal-2, .linha-horizontal-3 {
-      display: flex; gap: 20px; flex-wrap: wrap; margin-top: 5px;
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px;
     }
     .linha-horizontal label, .linha-horizontal-2 label, .linha-horizontal-3 label {
       flex: 1; min-width: 180px;
@@ -51,7 +51,7 @@
     }
     .btn:not(:last-child) { margin-bottom: 10px; }
     p {
-      color: red; margin-top: 1px; font-size: 10px; text-align: center; background-color: yellow;
+      color: red; margin-top: 2px; font-size: 10px; text-align: center; background-color: yellow; padding: 2px;
     }
     #pdf-content { background-color: #D6FFFF; padding: 15px 10px; border-radius: 4px; }
     canvas#assinatura { border: 1px solid #000; }
@@ -60,7 +60,7 @@
   </style>
 </head>
 <body>
-<label for="nome" style="font-size: 6px;">© 2025 Leonildo.Neumann</label>
+<label for="nome" style="font-size: 7px;">© 2025 Leonildo.Neumann</label>
 <div id="pdf-content">
   <div class="logo-container">
     <img src="logo-prefeitura.png" crossorigin="anonymous" alt="Prefeitura" class="logo">
@@ -70,7 +70,6 @@
   <h1><u>RELATÓRIO DE ATENDIMENTO DE OCORRÊNCIA</u></h1>
 
   <label>1 - NÚMERO: <input type="text" name="numero" style="width: 70px;"> /2025</label>
-
   <div class="linha-horizontal">
     <label>Data: <input type="date" name="data"></label>
     <label>Hora Início: <input type="time" name="hora_inicio"></label>
@@ -101,7 +100,7 @@
    </div> 
   <div class="assinatura">
     <label>Assinaturas (Agentes 1, 2, 3 e 4):</label>
-    <canvas id="assinatura" width="690" height="160"></canvas><br>
+    <canvas id="assinatura" width="690" height="170"></canvas><br>
   </div>
 
   <p><strong>OBS:</strong> Este documento é uma coleta preliminar de dados, para controle de atendimentos de ACIDENTES/OCORRÊNCIA da SETRAN, e não substitui o registro realizado por outros órgãos.</p>
