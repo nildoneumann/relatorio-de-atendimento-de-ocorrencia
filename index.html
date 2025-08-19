@@ -27,7 +27,7 @@
     }
     .logo { width: 120px; max-width: 30%; height: auto; }
     .linha-horizontal, .linha-horizontal-2, .linha-horizontal-3 {
-      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 5px;
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 3px;
     }
     .linha-horizontal label, .linha-horizontal-2 label, .linha-horizontal-3 label {
       flex: 1; min-width: 180px;
@@ -38,7 +38,7 @@
       color: blue; border-radius: 4px;
     }
     textarea {
-      height: auto; min-height: 160px; color: blue; font-family: Arial, sans-serif; font-size: 14px;
+      height: auto; min-height: 180px; color: blue; font-family: Arial, sans-serif; font-size: 14px;
     }
     .btn {
       margin-top: 10px; padding: 10px 15px; font-weight: bold; font-size: 18px;
@@ -46,12 +46,12 @@
       cursor: pointer; width: 100%;
     }
     .botao {
-      color: #15400e; padding: 10px 15px; text-align: center; display: inline-block;
+      color: blue; padding: 10px 15px; text-align: center; display: inline-block;
       font-size: 16px; cursor: pointer; border-radius: 10px; width: 100%; background-color: #D6FFFF;
     }
     .btn:not(:last-child) { margin-bottom: 10px; }
     p {
-      color: red; margin-top: 2px; font-size: 10px; text-align: center; background-color: yellow; padding: 2px;
+      color: red; margin-top: 1px; font-size: 11px; text-align: center; background-color: yellow; padding: 2px;
     }
     #pdf-content { background-color: #D6FFFF; padding: 15px 10px; border-radius: 4px; }
     canvas#assinatura { border: 1px solid #000; }
@@ -169,11 +169,17 @@ function prepararAssinatura(clone) {
   }
 }
 
-function gerarNomePDFComDataHora() {
+function getNumeroRelatorio() {
+  const numero = document.querySelector('input[name="numero"]').value.trim();
   const agora = new Date();
   const data = agora.toLocaleDateString('pt-BR').split('/').reverse().join('-');
   const hora = agora.toTimeString().split(' ')[0].replace(/:/g, '-');
-  return `relatorio_${data}_${hora}.pdf`;
+  if (numero) {
+  return `relatorio_${numero}_${data}_${hora}.pdf`;
+  } else {
+  return `relatorio_${data}_${hora}.pdf`; // nome padrão caso esteja vazio
+  }
+
 }
 
 function gerarPDF() {
@@ -248,7 +254,7 @@ async function compartilharPDF() {
 
   const opt = {
     margin: [5, 5, 5, 5],
-    filename: gerarNomePDFComDataHora(),
+    filename: getNumeroRelatorio(),
     image: { type: 'jpeg', quality: 0.98 },
     html2canvas: { 
       scale: 3,
@@ -263,7 +269,7 @@ async function compartilharPDF() {
 
   const blob = await html2pdf().set(opt).from(clone).outputPdf('blob');
 
-  const file = new File([blob], gerarNomePDFComDataHora(), { type: 'application/pdf' });
+  const file = new File([blob], getNumeroRelatorio(), { type: 'application/pdf' });
 
   if (navigator.canShare && navigator.canShare({ files: [file] })) {
     try {
