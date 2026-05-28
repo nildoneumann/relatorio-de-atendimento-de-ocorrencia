@@ -103,7 +103,7 @@ function gerarPDF() {
     div.style.whiteSpace = 'pre-wrap';
     div.style.border = '1px solid #ccc';
     div.style.padding = '5px';
-    div.style.minHeight = '80px';
+    div.style.minHeight = '45px';
     div.style.fontWeight = 'bold';
     div.style.fontSize = '14px';
     div.style.backgroundColor = 'white';
